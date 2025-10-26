@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Smooth drag animations */
+[data-rfd-draggable-id] {
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Remove default drag transition when actively dragging */
+[data-rfd-draggable-id][data-is-dragging="true"] {
+  transition: none;
+}
