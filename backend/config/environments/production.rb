@@ -84,4 +84,12 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Configure Action Cable to allow WebSocket connections from frontend
+  config.action_cable.allowed_request_origins = [
+    ENV["FRONTEND_URL"]
+  ].compact
+
+  # Alternative: Disable origin checking for debugging (less secure)
+  # config.action_cable.disable_request_forgery_protection = true
 end

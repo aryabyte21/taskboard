@@ -11,7 +11,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # In development, we allow requests from localhost:5173 (Vite's default port)
     # In production, you would specify your actual frontend domain
-    origins "localhost:5173", "127.0.0.1:5173"
+    origins Rails.env.development? ? ["localhost:5173", "127.0.0.1:5173"] : ENV["FRONTEND_URL"]
 
     # Allow all routes (*), all headers, and common HTTP methods
     resource "*",
