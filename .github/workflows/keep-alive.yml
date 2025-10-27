@@ -1,0 +1,25 @@
+name: Keep Render App Alive
+
+on:
+  schedule:
+    # Ping every 5 minutes to prevent cold starts
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Application Health Check
+        run: |
+          echo "Pinging application at $(date)"
+          # Replace YOUR_APP_NAME with your actual Render app name
+          # Example: https://taskboard-backend.onrender.com/up
+          curl -f -s "https://taskboard-06a3.onrender.com/up" || {
+            echo "Ping failed, but continuing..."
+            exit 0
+          }
+          echo "Ping successful!"
+      
+      - name: Log Status
+        run: echo "Keep-alive ping completed at $(date)"
